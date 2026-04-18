@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/images/th.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the container */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 2em;
+        }
+        label {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="file"] {
+            font-size: 1em;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.2em;
+            color: #333;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #uploaded-image {
+            margin-top: 20px;
+            max-width: 100%;
+            max-height: 300px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brain Tumor Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label for="file">Upload an MRI Image:</label>
+            <input type="file" id="file" name="file" accept="image/*" required onchange="previewImage(event)">
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Uploaded Image Preview -->
+        <img id="uploaded-image" src="" alt="Uploaded Image">
+
+        <!-- Result Placeholder -->
+        {% if prediction %}
+        <div class="result">
+            <h3>Prediction: {{ prediction }}</h3>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Function to preview the uploaded image before submitting the form
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const image = document.getElementById('uploaded-image');
+                image.src = e.target.result;
+                image.style.display = 'block'; // Show the uploaded image
+            }
+            
+            reader.readAsDataURL(file); // Convert the file to a data URL
+        }
+    </script>
+</body>
+</html>
