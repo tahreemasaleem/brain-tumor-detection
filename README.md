@@ -108,20 +108,7 @@ Custom CNN with:
 - **Precision/Recall**: High for all classes
 - **Inference Time**: < 1 second per image
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ⚠️ Disclaimer
 
 This tool is for educational and research purposes only. It is not intended for medical diagnosis. Always consult with qualified medical professionals for health-related decisions.
-
-## 📞 Contact
-
-Tahreem Asaleem - [Your Email/Contact]
-
-Project Link: [https://github.com/tahreemasaleem/brain-tumor-detection](https://github.com/tahreemasaleem/brain-tumor-detection)
